@@ -17,9 +17,9 @@ export default function App() {
         <InputSearch onSearch={searchUsers} />
       </div>
       {user && (
-        <div className="md:max-w-[800px] flex flex-col mx-auto relative">
-          <div className="w-full absolute top-[-20px]">
-            <div className="flex items-end justify-between">
+        <div className="w-[90%] md:max-w-[800px] flex flex-col mx-auto relative">
+          <div className="w-full top-[-20px] absolute">
+            <div className="flex flex-col md:flex-row md:items-end gap-4 md:justify-between">
               {user && (
                 <img
                   src={user.avatar_url}
@@ -27,18 +27,18 @@ export default function App() {
                   className="w-[80px] rounded-xl outline outline-8 outline-dark-gray"
                 />
               )}
-              <div className="flex">
+              <div className="flex flex-col md:flex-row gap-y-2">
                 <UserInfo title="Followers" data={user.followers} />
                 <UserInfo title="Following" data={user.following} />
                 <UserInfo title="Location" data={user.location} />
               </div>
             </div>
-            <div className="flex flex-col mt-4">
-              <h1 className="text-3xl ">{user.login}</h1>
-              <p>{user.bio}</p>
+            <div className="flex flex-col mt-4 mb-4">
+              <h1>{user.login}</h1>
+              <p className="small">{user.bio}</p>
             </div>
-            <div className="card grid grid-cols-2 gap-4">
-              {repos &&
+            <div className="card grid grid-cols-1 md:grid-cols-2 gap-x-4 mb-4">
+              {repos && 
                 repos.map((repos) => (
                   <CardRepos
                     key={repos.id}
