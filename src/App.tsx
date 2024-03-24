@@ -2,9 +2,14 @@ import UserInfo from "./components/UserInfo";
 import InputSearch from "./components/InputSearch";
 import { useProfile } from "./hooks/useProfile";
 import CardRepos from "./components/CardRepos";
+import TextIcon from "./components/TextIcon";
+
+import iconNesting from "./assets/Nesting.svg";
+import iconStar from "./assets/Star.svg";
+import iconChield from "./assets/Chield_alt.svg";
 
 export default function App() {
-  const { user, searchUsers } = useProfile();
+  const { user, searchUsers, repos } = useProfile();
 
   return (
     <>
@@ -33,16 +38,21 @@ export default function App() {
               <p>{user.bio}</p>
             </div>
             <div className="card grid grid-cols-2 gap-4">
-              <CardRepos
-                repoTitle=".github"
-                repoParagraph="Something her"
-                iconTitle="Nesting"
-              />
-              <CardRepos
-                repoTitle=".github"
-                repoParagraph="Something her"
-                iconTitle="Nesting"
-              />
+              {repos &&
+                repos.map((repos) => (
+                  <CardRepos
+                    key={repos.id}
+                    repoTitle={repos.name}
+                    repoParagraph={repos.description}
+                  > 
+                    {repos.license && <TextIcon title={repos.license.spdx_id} icon={iconChield} /> }
+                    <TextIcon title={repos.forks} icon={iconNesting} />
+                    <TextIcon title={repos.stargazers_count} icon={iconStar} />
+                    <p className="text-light-gray small">
+                      updated {parseInt(repos.updated_at)}
+                    </p>
+                  </CardRepos>
+                ))}
             </div>
           </div>
         </div>

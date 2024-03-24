@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Profile } from "../interfaces/GetProfileResponse";
+import { UserRepos } from "../interfaces/GetUserRepos";
 
 export const useProfile = () => {
   const [user, setUser] = useState<Profile | undefined>();
+  const [repos, setRepos] = useState<UserRepos[]>([]);
 
   const getProfile = async (username: string) => {
     const response = await fetch(`https://api.github.com/users/${username}`);
@@ -16,12 +18,24 @@ export const useProfile = () => {
   const searchUsers = async (search: string) => {
     try {
       const user = await getProfile(search);
+      const repos = await getRepos(user.login);
 
-      return setUser(user);
+      return (setUser(user), setRepos(repos));
     } catch (e) {
-      alert("USER NOT FOUND");
+      console.log("USER NOT FOUND");
     }
   };
 
-  return { user, setUser, searchUsers };
+  //////////////// repositories //////////////////////// repositories /////////////////////////////
+
+  const getRepos = async (username: string) => {
+    const response = await fetch(`https://api.github.com/users/${username}/repos`);
+    const data = await response.json();
+    return data;
+  };
+
+
+  ////////// returns ///////
+
+  return { user, setUser, searchUsers, repos, setRepos, getRepos };
 };

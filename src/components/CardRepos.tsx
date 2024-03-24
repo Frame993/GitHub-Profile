@@ -1,25 +1,23 @@
-import TextIcon from "./TextIcon";
-import iconNesting from "../assets/Nesting.svg";
-
+import React from "react";
 interface Props {
-  repoTitle: string;
-  repoParagraph: string;
-  iconTitle: string;
+  repoTitle: string | null
+  repoParagraph: string | null
+  children: React.ReactNode;
 }
 
 export default function CardRepos({
   repoTitle,
   repoParagraph,
-  iconTitle,
+  children,
 }: Props) {
   return (
-    <div className="flex flex-col bg-gradient-to-r from-almost-black to-dark-blue p-4 rounded-xl mt-8">
+    <div className="flex flex-col bg-gradient-to-r from-almost-black to-dark-blue p-6 rounded-xl mt-8 justify-between">
       <div className="flex flex-col mb-4 gap-2">
         <p className="text-almost-white">{repoTitle}</p>
-        <p className="text-light-gray small">{repoParagraph}</p>
+        <p className="text-almost-white small">{repoParagraph}</p>
       </div>
-      <div className="flex gap-2">
-        <TextIcon title={iconTitle} icon={iconNesting} />
+      <div className="flex gap-4">
+        {children}
       </div>
     </div>
   );
