@@ -58,7 +58,7 @@ export interface UserRepos {
     size:                        number;
     stargazers_count:            number;
     watchers_count:              number;
-    language:                    Language | null;
+    language:                    null | string;
     has_issues:                  boolean;
     has_projects:                boolean;
     has_downloads:               boolean;
@@ -70,11 +70,11 @@ export interface UserRepos {
     archived:                    boolean;
     disabled:                    boolean;
     open_issues_count:           number;
-    license:                     null | string;
+    license:                     License | null;
     allow_forking:               boolean;
     is_template:                 boolean;
     web_commit_signoff_required: boolean;
-    topics:                      any[];
+    topics:                      string[];
     visibility:                  Visibility;
     forks:                       number;
     open_issues:                 number;
@@ -83,16 +83,17 @@ export interface UserRepos {
 }
 
 export enum DefaultBranch {
+    Develop = "develop",
     Main = "main",
     Master = "master",
 }
 
-export enum Language {
-    Astro = "Astro",
-    CSS = "CSS",
-    HTML = "HTML",
-    JavaScript = "JavaScript",
-    TypeScript = "TypeScript",
+export interface License {
+    key:     string;
+    name:    string;
+    spdx_id: string;
+    url:     null | string;
+    node_id: string;
 }
 
 export interface Owner {
@@ -117,27 +118,27 @@ export interface Owner {
 }
 
 export enum EventsURL {
-    HTTPSAPIGithubCOMUsersFrame993EventsPrivacy = "https://api.github.com/users/Frame993/events{/privacy}",
+    HTTPSAPIGithubCOMUsersMidudevEventsPrivacy = "https://api.github.com/users/midudev/events{/privacy}",
 }
 
 export enum FollowingURL {
-    HTTPSAPIGithubCOMUsersFrame993FollowingOtherUser = "https://api.github.com/users/Frame993/following{/other_user}",
+    HTTPSAPIGithubCOMUsersMidudevFollowingOtherUser = "https://api.github.com/users/midudev/following{/other_user}",
 }
 
 export enum GistsURL {
-    HTTPSAPIGithubCOMUsersFrame993GistsGistID = "https://api.github.com/users/Frame993/gists{/gist_id}",
+    HTTPSAPIGithubCOMUsersMidudevGistsGistID = "https://api.github.com/users/midudev/gists{/gist_id}",
 }
 
 export enum Login {
-    Frame993 = "Frame993",
+    Midudev = "midudev",
 }
 
 export enum NodeID {
-    UKgDOBhG9YA = "U_kgDOBhG9YA",
+    MDQ6VXNlcjE1NjE5NTU = "MDQ6VXNlcjE1NjE5NTU=",
 }
 
 export enum StarredURL {
-    HTTPSAPIGithubCOMUsersFrame993StarredOwnerRepo = "https://api.github.com/users/Frame993/starred{/owner}{/repo}",
+    HTTPSAPIGithubCOMUsersMidudevStarredOwnerRepo = "https://api.github.com/users/midudev/starred{/owner}{/repo}",
 }
 
 export enum Type {

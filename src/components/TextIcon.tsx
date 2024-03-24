@@ -1,5 +1,6 @@
+
 interface Props {
-    title: string | null | number ;
+    title: null | string | number ;
     icon: string;
 }
 
