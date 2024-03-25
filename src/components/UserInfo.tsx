@@ -1,6 +1,6 @@
 interface Props {
-    title: string;
-    data: number | string;
+    title: string | undefined;
+    data: number | string | undefined;
 }
 
 export default function Datos({ title, data }: Props) {

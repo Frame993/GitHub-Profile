@@ -2,7 +2,17 @@ interface Props {
   onSearch: (searchText: string) => void;
 }
 
-export default function InputSearch({ onSearch }: Props) {
+export default function InputSearch({ onSearch,  }: Props) {
+
+  const handleSearch = (searchText: string) => {
+    if (searchText) {
+      onSearch(searchText);
+    } else {
+      onSearch("");
+    }
+  }
+
+
   return (
     <div className="flex bg-dark-gray py-2 px-4 rounded-lg w-[90%] md:max-w-[400px]">
       <svg
@@ -24,7 +34,8 @@ export default function InputSearch({ onSearch }: Props) {
       <input
         type="text"
         placeholder="Github username"
-        onChange={(e) => onSearch(e.target.value)}
+        // onKeyDown={(e) => e.key === "Enter" && onSearch(e.currentTarget.value)}
+        onChange={(e) => handleSearch(e.currentTarget.value)}
         className="w-full px-2 small"
       />
     </div>

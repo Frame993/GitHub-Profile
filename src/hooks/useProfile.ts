@@ -20,20 +20,22 @@ export const useProfile = () => {
       const user = await getProfile(search);
       const repos = await getRepos(user.login);
 
-      return (setUser(user), setRepos(repos));
+      return setUser(user), setRepos(repos);
     } catch (e) {
       console.log("USER NOT FOUND");
+      return setUser(undefined), setRepos([]);
     }
   };
 
   //////////////// repositories //////////////////////// repositories /////////////////////////////
 
   const getRepos = async (username: string) => {
-    const response = await fetch(`https://api.github.com/users/${username}/repos`);
+    const response = await fetch(
+      `https://api.github.com/users/${username}/repos`
+    );
     const data = await response.json();
     return data;
   };
-
 
   ////////// returns ///////
 
